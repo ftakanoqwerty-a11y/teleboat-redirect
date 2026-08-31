@@ -3,20 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>テレボートアプリ起動</title>
-  <script>
-    window.onload = function() {
-      window.location.href = "teleboat://";
-    };
-  </script>
+  <title>テレボート起動中</title>
   <style>
-    body { font-family: -apple-system, sans-serif; text-align: center; padding: 40px 20px; background: #f0f2f5; }
-    .btn { display: inline-block; padding: 18px 36px; background: #0066cc; color: #fff; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 12px; margin-top: 30px; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      padding: 30px 16px;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h2 { font-size: 20px; margin-bottom: 8px; }
+    p { font-size: 14px; color: #64748b; margin-bottom: 24px; line-height: 1.5; }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px 0;
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: opacity 0.2s;
+    }
+    .btn:active { opacity: 0.8; }
+    .btn-primary { background: #0066cc; color: #ffffff; }
+    .btn-secondary { background: #059669; color: #ffffff; }
+    .btn-outline { background: #ffffff; color: #475569; border: 1px solid #cbd5e1; font-size: 14px; padding: 12px 0; }
   </style>
 </head>
 <body>
-  <h2>テレボートアプリを起動中...</h2>
-  <p>自動で開かない場合は下のボタンをタップしてください。</p>
-  <a href="teleboat://" class="btn">📱 テレボートアプリを開く</a>
+  <div class="card">
+    <h2>📱 テレボート起動</h2>
+    <p>自動で起動しない場合は<br>ご利用の端末に合わせてボタンをタップしてください。</p>
+
+    <!-- iOS用スキーム -->
+    <a href="teleboat://" class="btn btn-primary">🍎 iPhone / iPad で開く</a>
+
+    <!-- Android用インテント起動 -->
+    <a href="intent://#Intent;scheme=teleboat;package=jp.or.mbrace.teleboat;end" class="btn btn-secondary">🤖 Android で開く</a>
+
+    <!-- 公式Web投票フォールバック -->
+    <a href="https://ib.mbrace.or.jp/" class="btn btn-outline">🌐 Webブラウザで投票画面を開く</a>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const ua = navigator.userAgent.toLowerCase();
+      if (/iphone|ipad|ipod/.test(ua)) {
+        window.location.href = "teleboat://";
+      } else if (/android/.test(ua)) {
+        window.location.href = "intent://#Intent;scheme=teleboat;package=jp.or.mbrace.teleboat;end";
+      }
+    };
+  </script>
 </body>
 </html>
