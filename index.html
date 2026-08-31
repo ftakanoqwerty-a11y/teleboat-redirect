@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テレボートアプリ起動</title>
+  <script>
+    window.onload = function() {
+      window.location.href = "teleboat://";
+    };
+  </script>
+  <style>
+    body { font-family: -apple-system, sans-serif; text-align: center; padding: 40px 20px; background: #f0f2f5; }
+    .btn { display: inline-block; padding: 18px 36px; background: #0066cc; color: #fff; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 12px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <h2>テレボートアプリを起動中...</h2>
+  <p>自動で開かない場合は下のボタンをタップしてください。</p>
+  <a href="teleboat://" class="btn">📱 テレボートアプリを開く</a>
+</body>
+</html>
