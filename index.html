@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>テレボート起動中</title>
+  <title>テレボート投票へ移動中</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -35,34 +35,28 @@
       transition: opacity 0.2s;
     }
     .btn:active { opacity: 0.8; }
-    .btn-primary { background: #0066cc; color: #ffffff; }
-    .btn-secondary { background: #059669; color: #ffffff; }
-    .btn-outline { background: #ffffff; color: #475569; border: 1px solid #cbd5e1; font-size: 14px; padding: 12px 0; }
+    .btn-sp { background: #0066cc; color: #ffffff; }
+    .btn-app { background: #059669; color: #ffffff; }
   </style>
 </head>
 <body>
   <div class="card">
-    <h2>📱 テレボート起動</h2>
-    <p>自動で起動しない場合は<br>ご利用の端末に合わせてボタンをタップしてください。</p>
+    <h2>🚤 テレボート投票</h2>
+    <p>下のボタンをタップして投票画面を開いてください。</p>
 
-    <!-- iOS用スキーム -->
-    <a href="teleboat://" class="btn btn-primary">🍎 iPhone / iPad で開く</a>
+    <!-- 最も安定して直接投票できる公式スマホ投票画面 -->
+    <a href="https://spweb.mbrace.or.jp/sp/" class="btn btn-sp">📱 スマホ版 テレボートを開く</a>
 
-    <!-- Android用インテント起動 -->
-    <a href="intent://#Intent;scheme=teleboat;package=jp.or.mbrace.teleboat;end" class="btn btn-secondary">🤖 Android で開く</a>
-
-    <!-- 公式Web投票フォールバック -->
-    <a href="https://ib.mbrace.or.jp/" class="btn btn-outline">🌐 Webブラウザで投票画面を開く</a>
+    <!-- Androidアプリ直接起動用インテント -->
+    <a href="intent://spweb.mbrace.or.jp/sp/#Intent;scheme=https;package=jp.or.teleboat;end" class="btn btn-app">🤖 Androidアプリで開く</a>
   </div>
 
   <script>
+    // ページ表示時に即座にスマホ版投票サイトへ遷移
     window.onload = function() {
-      const ua = navigator.userAgent.toLowerCase();
-      if (/iphone|ipad|ipod/.test(ua)) {
-        window.location.href = "teleboat://";
-      } else if (/android/.test(ua)) {
-        window.location.href = "intent://#Intent;scheme=teleboat;package=jp.or.mbrace.teleboat;end";
-      }
+      setTimeout(function() {
+        window.location.href = "https://spweb.mbrace.or.jp/sp/";
+      }, 500);
     };
   </script>
 </body>
